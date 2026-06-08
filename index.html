@@ -93,14 +93,6 @@
         googletag.cmd.push(function() {
   googletag.setConfig({ singleRequest: true });
 
-  var anchorSlot = googletag.defineOutOfPageSlot(
-    '/23346110263/ws4_home_multiple-size-1',
-    googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR
-  );
-
-  if (anchorSlot) {
-    anchorSlot.addService(googletag.pubads());
-  }
 
   googletag.enableServices();
 
