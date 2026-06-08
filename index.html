@@ -10,28 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
     <!-- 自定义样式：控制锚定广告高度 -->
-  <style>
-    /* 方法一：通过 data 属性选择器 */
-    div[data-gpt-anchor="bottom"] {
-      height: 10px !important;      /* 调整这里的高度 */
-      min-height: 10px !important;
-      max-height: 10px !important;
-    }
-    
-    div[data-gpt-anchor="bottom"] iframe {
-      height: 10px !important;
-      max-height: 10px !important;
-    }
-    
-    /* 方法二：如果方法一不生效，使用更直接的选择器 */
-    .gpt-锚定-底部 {
-      height: 10px !important;
-    }
-    
-    .gpt-锚定-底部 iframe {
-      height: px !important;
-    }
-  </style>
   
 <script>
   window.googletag = window.googletag || {cmd: []};
@@ -66,38 +44,40 @@
     googletag.enableServices();
   });
 </script>
-    <script>
+    <style>
+        /* 这里设置你想要的高度 */
+        #fixed-bottom-ad-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px !important; /* 你想要的高度 */
+            background: #f0f0f0;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        /* 为页面底部留出空间，防止遮挡内容 */
+        body { padding-bottom: 40px; }
+    </style>
+  
+ <script>
   window.googletag = window.googletag || {cmd: []};
-
   googletag.cmd.push(function() {
-    // 设置单请求模式
-    googletag.setConfig({ singleRequest: true });
-
-    // 定义底部锚定广告位（核心）
-    var anchorSlot = googletag.defineOutOfPageSlot(
-      '/23346110263/ws4_home_multiple-size-1',  // 使用你原有的广告单元路径
-      googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR
-        googletag.pubads().set("forceCollapsible", true);
-    );
-
-    if (anchorSlot) {
-      anchorSlot.addService(googletag.pubads());
-    }
-
+    // 增加这一行，确保广告请求符合隐私规范
+    googletag.pubads().setPrivacySettings({
+      'restrictDataProcessing': false
+    });
+    
+    googletag.defineSlot('/23346110263/ws4_home_multiple-size-1', [320, 50], 'div-gpt-ad-fixed-bottom').addService(googletag.pubads());
+    
+    // 确保在展示前调用此方法
+    googletag.pubads().enableSingleRequest();
     googletag.enableServices();
-
-    // 展示锚定广告
-    if (anchorSlot) {
-      googletag.display(anchorSlot);
-    }
   });
-        googletag.cmd.push(function() {
-  googletag.setConfig({ singleRequest: true });
-
-
-  googletag.enableServices();
-
- 
 </script>
 </head>
 <body>
@@ -251,6 +231,16 @@
     googletag.cmd.push(function() { googletag.display('div-gpt-ad-1780484174928-0'); });
   </script>
 </div>
+    <div id="fixed-bottom-ad-container">
+        <div id="div-gpt-ad-fixed-bottom">
+            <script>
+                googletag.cmd.push(function() { googletag.display('div-gpt-ad-fixed-bottom'); });
+            </script>
+        </div>
+    </div>
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
     <!-- 首页 Banner，仅在首页显示 -->
     <div id="home-banner-container" class="home-banner-container"></div>
 
