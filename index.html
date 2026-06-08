@@ -44,25 +44,35 @@
     googletag.enableServices();
   });
 </script>
-    <style>
-        /* 这里设置你想要的高度 */
-        #fixed-bottom-ad-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 40px !important; /* 你想要的高度 */
-            background: #f0f0f0;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-        }
-        /* 为页面底部留出空间，防止遮挡内容 */
-        body { padding-bottom: 40px; }
-    </style>
+  <style>
+    #fixed-bottom-ad-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100% !important; /* 强制占满宽度 */
+        height: 40px !important;
+        background: #f8f8f8; /* 建议使用浅灰色 */
+        z-index: 999999;
+        display: flex;
+        justify-content: center; /* 居中广告 */
+        align-items: center;
+        overflow: hidden;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    #div-gpt-ad-fixed-bottom {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 确保 body 底部留白以防遮挡 */
+    body { padding-bottom: 40px !important; }
+</style>
   
  <script>
   window.googletag = window.googletag || {cmd: []};
