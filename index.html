@@ -97,6 +97,53 @@
       googletag.display(anchorSlot);
     }
   });
+        googletag.cmd.push(function() {
+  googletag.setConfig({ singleRequest: true });
+
+  var anchorSlot = googletag.defineOutOfPageSlot(
+    '/23346110263/ws4_home_multiple-size-1',
+    googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR
+  );
+
+  if (anchorSlot) {
+    anchorSlot.addService(googletag.pubads());
+  }
+
+  googletag.enableServices();
+
+  if (anchorSlot) {
+    googletag.display(anchorSlot);
+    
+    // 等待广告容器生成后修改高度
+    setTimeout(function() {
+      // 查找锚定广告容器
+      var anchorDiv = document.querySelector('[data-gpt-anchor="bottom"]');
+      if (!anchorDiv) {
+        // 尝试其他选择器
+        anchorDiv = document.querySelector('.bottom-anchor-ad-container');
+      }
+      if (!anchorDiv) {
+        // 通用选择器：固定在底部且包含 iframe 的 div
+        var allDivs = document.querySelectorAll('div[style*="position: fixed"][style*="bottom: 0px"]');
+        for (var i = 0; i < allDivs.length; i++) {
+          if (allDivs[i].querySelector('iframe')) {
+            anchorDiv = allDivs[i];
+            break;
+          }
+        }
+      }
+      
+      if (anchorDiv) {
+        anchorDiv.style.height = '50px';
+        anchorDiv.style.minHeight = '50px';
+        var iframe = anchorDiv.querySelector('iframe');
+        if (iframe) {
+          iframe.style.height = '50px';
+        }
+      }
+    }, 500);
+  }
+});
 </script>
 </head>
 <body>
